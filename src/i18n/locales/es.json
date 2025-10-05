@@ -1,0 +1,246 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "about": "Acerca de",
+    "contact": "Contacto",
+    "changeLanguage": "Cambiar idioma"
+  },
+  "hero": {
+    "badge": "Pakado Style",
+    "title": "Embalaje Personalizado",
+    "description": "Desde el diseño gráfico hasta la producción final, ofrecemos soluciones completas de impresión offset para sus embalajes, cajas, bolsas, vasos y más.",
+    "buttons": {
+      "quote": "Solicitar presupuesto",
+      "products": "Descubrir nuestros productos"
+    }
+  },
+  "trustedCompanies": {
+    "badge": "Confían en nosotros",
+    "title": "Más de 20 empresas",
+    "titleHighlight": "confían en nosotros"
+  },
+  "about": {
+    "badge": "Acerca de nosotros",
+    "title": "Pakado Style, más que una",
+    "titleHighlight": "imprenta",
+    "description": "No somos solo un proveedor de embalajes. Pakado Style es una empresa de impresión offset que le acompaña de la A a la Z: diseño gráfico, asesoramiento personalizado e impresión profesional. ¿Nuestra misión? Transformar sus ideas en embalajes que reflejen su identidad y atraigan a sus clientes.",
+    "button": "Ver más detalles"
+  },
+  "products": {
+    "badge": "Nuestros Productos",
+    "title": "Una gama completa de embalajes",
+    "titleHighlight": "personalizados",
+    "description": "En Pakado Style, ofrecemos y fabricamos embalajes que valorizan sus productos y su marca. Gracias a la impresión offset, garantizamos una calidad de imagen excepcional y acabados premium.",
+    "categories": {
+      "alimentaires": "Cajas alimentarias",
+      "barquettes": "Bandejas y boles",
+      "gobelets": "Vasos y accesorios de bebidas",
+      "sacs": "Bolsas y embalajes para llevar",
+      "accessoires": "Accesorios de mesa"
+    },
+    "items": {
+      "sandwich_box": {
+        "name": "Caja para sándwich",
+        "description": "Ideal para un embalaje práctico con personalización óptima según sus necesidades. Dimensiones personalizables."
+      },
+      "pizza_box": {
+        "name": "Caja para pizza",
+        "description": "Perfecta para sus pizzas con impresión personalizada de alta calidad."
+      },
+      "burger_box": {
+        "name": "Caja para hamburguesa",
+        "description": "Embalaje ecológico y personalizable para sus hamburguesas."
+      },
+      "sushi_box": {
+        "name": "Caja para sushi",
+        "description": "Cajas transparentes para su sushi con personalización posible."
+      },
+      "salad_box": {
+        "name": "Caja para ensalada",
+        "description": "Contenedores perfectos para sus ensaladas frescas con tapa hermética."
+      },
+      "pasta_box": {
+        "name": "Caja para pasta",
+        "description": "Embalajes calientes para sus platos de pasta con excelente retención térmica."
+      },
+      "plastic_container": {
+        "name": "Bandeja de plástico",
+        "description": "Bandejas resistentes para todo tipo de alimentos."
+      },
+      "cardboard_bowl": {
+        "name": "Bol de cartón",
+        "description": "Boles ecológicos personalizables."
+      },
+      "aluminum_container": {
+        "name": "Bandeja de aluminio",
+        "description": "Resistente al calor para platos calientes."
+      },
+      "soup_bowl": {
+        "name": "Bol para sopa",
+        "description": "Boles perfectos para sopas y caldos."
+      },
+      "custom_cup": {
+        "name": "Vaso personalizado",
+        "description": "Vasos con su logo y diseño."
+      },
+      "plastic_lid": {
+        "name": "Tapa de plástico",
+        "description": "Tapas compatibles con nuestros vasos."
+      },
+      "cardboard_cup": {
+        "name": "Vaso de cartón",
+        "description": "Vasos ecológicos de cartón reciclable."
+      },
+      "kraft_bag": {
+        "name": "Bolsa kraft",
+        "description": "Bolsas de papel kraft personalizadas."
+      },
+      "plastic_bag": {
+        "name": "Bolsa de plástico",
+        "description": "Bolsas de plástico con impresión de alta calidad."
+      },
+      "reusable_bag": {
+        "name": "Bolsa reutilizable",
+        "description": "Bolsas ecológicas reutilizables personalizables."
+      },
+      "custom_napkins": {
+        "name": "Servilletas personalizadas",
+        "description": "Servilletas con su marca."
+      },
+      "placemats": {
+        "name": "Manteles individuales",
+        "description": "Manteles individuales personalizables."
+      },
+      "disposable_cutlery": {
+        "name": "Cubiertos desechables",
+        "description": "Cubiertos ecológicos personalizables."
+      }
+    }
+  },
+  "whyChooseUs": {
+    "badge": "Por qué nosotros",
+    "title": "¿Por qué elegir",
+    "titleHighlight": "Pakado Style?",
+    "description": "Su éxito comienza con un buen embalaje",
+    "features": {
+      "ecoResponsible": {
+        "title": "Eco-responsable",
+        "description": "Materiales respetuosos con el medio ambiente"
+      },
+      "qualityExpertise": {
+        "title": "Experiencia en calidad",
+        "description": "Calidad de impresión premium"
+      },
+      "customService": {
+        "title": "Servicio llave en mano",
+        "description": "De la idea a la producción final"
+      },
+      "customerProximity": {
+        "title": "Proximidad al cliente",
+        "description": "Acompañamiento humano y personalizado"
+      }
+    },
+    "stats": {
+      "projectsCompleted": "proyectos realizados",
+      "partners": "clientes socios",
+      "experience": "años de experiencia"
+    }
+  },
+  "footer": {
+    "sections": {
+      "company": "Empresa",
+      "contact": "Contáctenos",
+      "legal": "Legal",
+      "social": "Síguenos"
+    },
+    "contact": {
+      "address": "69 boulevard moh\nSaid Ouzellaguen"
+    },
+    "legal": {
+      "terms": "Términos de uso",
+      "privacy": "Política de privacidad"
+    },
+    "copyright": "© 2024 Pakado Style. Todos los derechos reservados. Desarrollado por DecksinTech"
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Preguntas",
+    "titleHighlight": "frecuentes",
+    "buttoncta": "Contáctenos",
+    "description": "Encuentre rápidamente respuestas a las preguntas más frecuentes de nuestros clientes sobre nuestros embalajes personalizados, plazos de entrega, materiales y opciones de personalización.",
+    "questions": {
+      "designService": {
+        "question": "¿Ofrecen servicio de diseño para embalajes?",
+        "answer": "Sí, nuestro equipo de diseñadores expertos puede crear un diseño único que refleje la identidad visual de su marca. También puede traernos sus propios archivos y nos encargamos de la impresión."
+      },
+      "customPackaging": {
+        "question": "¿Cómo pedir embalaje personalizado?",
+        "answer": "Contáctenos a través de nuestro formulario o por teléfono. Discutiremos sus necesidades, le proporcionaremos un presupuesto detallado y nos encargaremos de todo el proceso de producción."
+      },
+      "packagingTypes": {
+        "question": "¿Qué tipos de embalaje ofrecen?",
+        "answer": "Ofrecemos una amplia gama: cajas alimentarias, bandejas, vasos personalizados, bolsas kraft y plástico, así como todos los accesorios de mesa personalizables."
+      },
+      "ecoFriendly": {
+        "question": "¿El embalaje personalizado es ecológico?",
+        "answer": "Sí, privilegiamos materiales reciclables y eco-responsables. Nuestros embalajes de cartón y kraft son biodegradables y respetuosos con el medio ambiente."
+      },
+      "deliveryDetails": {
+        "question": "¿Cuáles son los plazos de fabricación y entrega?",
+        "answer": "Los plazos varían según la complejidad y la cantidad. Generalmente, cuente de 7 a 15 días hábiles después de la validación del diseño y la orden de compra."
+      }
+    }
+  },
+  "showcase": {
+    "badge": "Realizaciones",
+    "title": "Un embalaje que llama la atención, una impresión que",
+    "titleHighlight": "marca la diferencia",
+    "description": "En Pakado Style, creemos que el embalaje es mucho más que un simple contenedor: es un verdadero medio de comunicación. Cada caja cuenta una historia que nos conecta y captura nuestra marca. Descubra nuestras realizaciones con calidad impresa que marca toda la diferencia."
+  },
+  "quote": {
+    "badge": "Solicitar presupuesto",
+    "title": "¿Listo para trabajar con nosotros?",
+    "description": "Solicite un presupuesto gratuito en 2 minutos",
+    "nextButton": "Siguiente",
+    "previousButton": "Anterior",
+    "step1": {
+      "title": "Información personal",
+      "firstName": "Nombre",
+      "firstNamePlaceholder": "Mohammed",
+      "lastName": "Apellido",
+      "lastNamePlaceholder": "Ahmed",
+      "company": "Nombre de la empresa",
+      "companyPlaceholder": "Pakado Style",
+      "phone": "Teléfono",
+      "phonePlaceholder": "+213 XX XXX XXXX"
+    },
+    "validation": {
+      "required": "Este campo es obligatorio",
+      "invalidPhone": "Número de teléfono inválido",
+      "invalidQuantity": "Cantidad inválida"
+    },
+    "step2": {
+      "title": "Detalles del proyecto",
+      "product": "Producto deseado",
+      "productPlaceholder": "Caja para crepe",
+      "colorCount": "Número de colores",
+      "colorCountPlaceholder": "XX",
+      "primaryColor": "Color principal:",
+      "helpText": "¿No encontró lo que buscaba? Haga clic aquí"
+    },
+    "step3": {
+      "title": "Cantidad y Presupuesto",
+      "quantity": "Cantidad deseada",
+      "quantityPlaceholder": "XXXX",
+      "budget": "Presupuesto estimado"
+    },
+    "submitButton": "Solicitar mi presupuesto gratuito",
+    "success": {
+      "title": "¡Presupuesto enviado con éxito!",
+      "description": "Nos pondremos en contacto con usted lo antes posible."
+    }
+  },
+    "loading":{
+  "text": "cargando..."
+}
+}

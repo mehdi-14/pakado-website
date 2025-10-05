@@ -1,0 +1,246 @@
+{
+  "navigation": {
+    "home": "Accueil",
+    "about": "À propos",
+    "contact": "Contact",
+    "changeLanguage": "Changer la langue"
+  },
+  "hero": {
+    "badge": "Pakado Style",
+    "title": "Packaging Sur Mesure",
+    "description": "De la conception graphique à la réalisation finale, nous vous offrons des solutions complètes d'impression offset pour vos emballages, boites, sacs, gobelets et bien plus.",
+    "buttons": {
+      "quote": "Demander un devis",
+      "products": "Découvrir nos produits"
+    }
+  },
+   "trustedCompanies": {
+    "badge": "Ils nous font confiance",
+    "title": "Plus de 20 entreprises nous font",
+    "titleHighlight": "confiance"
+  },
+    "about": {
+    "badge": "À propos de nous",
+    "title": "Pakado Style, bien plus qu'un",
+    "titleHighlight": "imprimeur",
+    "description": "Nous ne sommes pas qu'un fournisseur d'emballages. Pakado Style est une entreprise d'impression offset qui vous accompagne de la A à Z : conception graphique, conseil personnalisé et impression professionnelle. Notre mission ? transformer vos idées en emballages qui reflètent votre identité et séduisent vos clients.",
+    "button": "Voir plus de détails"
+  },
+  "products": {
+    "badge": "Nos Produits",
+    "title": "Une gamme complète d'emballages",
+    "titleHighlight": "personnalisés",
+    "description": "Chez Pakado Style, nous proposons et fabriquons des emballages qui valorisent vos produits et votre marque. Grâce à l'impression offset, nous garantissons une qualité d'image exceptionnelle et des finitions haut de gamme.",
+    "categories": {
+      "alimentaires": "Boites alimentaires", 
+      "barquettes": "Barquettes & bols",
+      "gobelets": "Gobelets & accessoires boisson",
+      "sacs": "Sacs & emballages à emporter",
+      "accessoires": "Accessoires de table"
+    },
+    "items": {
+      "sandwich_box": {
+        "name": "Boite à sandwich",
+        "description": "Idéale pour un emballage à la fois pratique et qui mise une personnalisation optimale selon vos besoins. Dimensions personnalisables."
+      },
+      "pizza_box": {
+        "name": "Boite à pizza", 
+        "description": "Parfaite pour vos pizzas avec impression personnalisée haute qualité."
+      },
+      "burger_box": {
+        "name": "Boite à burger",
+        "description": "Emballage écologique et personnalisable pour vos burgers."
+      },
+      "sushi_box": {
+        "name": "Boite à sushi",
+        "description": "Boites transparentes pour vos sushis avec personnalisation possible."
+      },
+      "salad_box": {
+        "name": "Boite à salade",
+        "description": "Contenants parfaits pour vos salades fraîches avec couvercle hermétique."
+      },
+      "pasta_box": {
+        "name": "Boite à pâtes",
+        "description": "Emballages chauds pour vos plats de pâtes avec excellent maintien thermique."
+      },
+      "plastic_container": {
+        "name": "Barquette plastique",
+        "description": "Barquettes résistantes pour tous types d'aliments."
+      },
+      "cardboard_bowl": {
+        "name": "Bol en carton",
+        "description": "Bols écologiques personnalisables."
+      },
+      "aluminum_container": {
+        "name": "Barquette aluminium",
+        "description": "Résistantes à la chaleur pour plats chauds."
+      },
+      "soup_bowl": {
+        "name": "Bol à soupe",
+        "description": "Bols parfaits pour soupes et bouillons."
+      },
+      "custom_cup": {
+        "name": "Gobelet personnalisé",
+        "description": "Gobelets avec votre logo et design."
+      },
+      "plastic_lid": {
+        "name": "Couvercle plastique",
+        "description": "Couvercles compatibles avec nos gobelets."
+      },
+      "cardboard_cup": {
+        "name": "Gobelet carton",
+        "description": "Gobelets écologiques en carton recyclable."
+      },
+      "kraft_bag": {
+        "name": "Sac kraft",
+        "description": "Sacs en papier kraft personnalisés."
+      },
+      "plastic_bag": {
+        "name": "Sac plastique",
+        "description": "Sacs plastiques avec impression haute qualité."
+      },
+      "reusable_bag": {
+        "name": "Sac réutilisable",
+        "description": "Sacs écologiques réutilisables personnalisables."
+      },
+      "custom_napkins": {
+        "name": "Serviettes personnalisées",
+        "description": "Serviettes avec votre branding."
+      },
+      "placemats": {
+        "name": "Sets de table",
+        "description": "Sets de table personnalisables."
+      },
+      "disposable_cutlery": {
+        "name": "Couverts jetables",
+        "description": "Couverts écologiques personnalisables."
+      }
+    }
+  },
+  "whyChooseUs": {
+    "badge": "Pourquoi nous",
+    "title": "Pourquoi choisir",
+    "titleHighlight": "Pakado Style ?",
+    "description": "Votre succès commence avec un bon packaging",
+    "features": {
+      "ecoResponsible": {
+        "title": "Éco-responsable",
+        "description": "Des matériaux respectueux de l'environnement"
+      },
+      "qualityExpertise": {
+        "title": "Expertise qualité",
+        "description": "Une qualité d'impression premium"
+      },
+      "customService": {
+        "title": "Service clé en main",
+        "description": "De l'idée à la production finale"
+      },
+      "customerProximity": {
+        "title": "Proximité client",
+        "description": "Un accompagnement humain et personnalisé"
+      }
+    },
+    "stats": {
+      "projectsCompleted": "projets réalisés",
+      "partners": "clients partenaires", 
+      "experience": "ans d'expérience"
+    }
+  },
+   "footer": {
+    "sections": {
+      "company": "Entreprise",
+      "contact": "Contactez-nous", 
+      "legal": "Légal",
+      "social": "Suivez-nous"
+    },
+    "contact": {
+      "address": "69 boulevard moh\nSaid Ouzellaguen"
+    },
+    "legal": {
+      "terms": "Conditions d'utilisation",
+      "privacy": "Politique de confidentialité"
+    },
+    "copyright": "© 2024 Pakado Style. All Rights Reserved. Powered by DecksinTech"
+  },
+   "faq": {
+    "badge": "FAQ",
+    "title": "Questions fréquemment",
+    "titleHighlight": "posées",
+    "buttoncta": "Contactez-nous",
+    "description": "Trouvez rapidement des réponses aux questions les plus posées par nos clients sur nos emballages personnalisés, délais de livraison, matériaux et options de personnalisation.",
+    "questions": {
+      "designService": {
+        "question": "Proposez-vous un service de design pour le packaging ?",
+        "answer": "Oui, notre équipe de designers experts peut créer un design unique qui reflète l'identité visuelle de votre marque. Vous pouvez aussi nous apporter vos propres fichiers et nous nous chargons de l'impression."
+      },
+      "customPackaging": {
+        "question": "Comment passer une commande de packaging personnalisé ?",
+        "answer": "Contactez-nous via notre formulaire ou par téléphone. Nous discuterons de vos besoins, vous fournirons un devis détaillé et nous nous occuperons de tout le processus de production."
+      },
+      "packagingTypes": {
+        "question": "Quels types de packaging proposez-vous ?",
+        "answer": "Nous proposons une large gamme : boites alimentaires, barquettes, gobelets personnalisés, sacs kraft et plastique, ainsi que tous les accessoires de table personnalisables."
+      },
+      "ecoFriendly": {
+        "question": "Le packaging sur mesure est-il écologique ?",
+        "answer": "Oui, nous privilégions des matériaux recyclables et éco-responsables. Nos emballages en carton et kraft sont biodégradables et respectueux de l'environnement."
+      },
+      "deliveryDetails": {
+        "question": "Quels sont les délais de fabrication et de livraison ?",
+        "answer": "Les délais varient selon la complexité et la quantité. Généralement, comptez 7 à 15 jours ouvrables après validation du design et du bon de commande."
+      }
+    }
+  },
+   "showcase": {
+    "badge": "Réalisations",
+    "title": "Un packaging qui attire l'œil, une",
+    "titleHighlight": "impression qui fait la différence",
+    "description": "Chez Pakado Style, nous croyons que l'emballage est bien plus qu'un simple contenant : c'est un véritable support de communication. Chaque boite raconte un histoire qui nous connecte et qui capte sur notre marque. Découvrez nos réalisations une qualité imprimée qui fait toute la différence."
+  },
+    "quote": {
+    "badge": "Demander un devis",
+    "title": "Prêt à travailler avec nous ?",
+    "description": "Demandez un devis gratuit en 2 minutes",
+    "nextButton": "Suivant",
+    "previousButton": "Précédent",
+    "step1": {
+      "title": "Informations personnelles",
+      "firstName": "Nom",
+      "firstNamePlaceholder": "Mohammed",
+      "lastName": "Prénom", 
+      "lastNamePlaceholder": "Ahmed",
+      "company": "Nom de l'entreprise",
+      "companyPlaceholder": "Pakado Style",
+      "phone": "Téléphone",
+      "phonePlaceholder": "+213 XX XXX XXXX"
+    },
+    "validation": {
+      "required": "Ce champ est requis",
+      "invalidPhone": "Numéro de téléphone invalide",
+      "invalidQuantity": "Quantité invalide"
+    },
+     "step2": {
+      "title": "Détails du projet",
+      "product": "Produit souhaité",
+      "productPlaceholder": "Boite à crêpe",
+      "colorCount": "Nombre de couleurs",
+      "colorCountPlaceholder": "XX",
+      "primaryColor": "Couleur principale :",
+      "helpText": "Vous n'avez pas trouvé ce que vous cherchiez ? Cliquez-ici"
+    },
+     "step3": {
+      "title": "Quantité & Budget",
+      "quantity": "Quantité souhaitée",
+      "quantityPlaceholder": "XXXX",
+      "budget": "Budget estimé"
+    },
+    "submitButton": "Demander mon devis gratuit",
+    "success": {
+      "title": "Devis envoyé avec succès !",
+      "description": "Nous vous contacterons dans les plus brefs délais."
+    }
+  },
+  "loading":{
+  "text": "Chargement..."
+}
+}

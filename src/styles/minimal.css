@@ -1,0 +1,19 @@
+/* styles/minimal.css */
+/* Import Bootstrap CSS */
+@import 'bootstrap/dist/css/bootstrap.min.css';
+
+/* Reset minimal - ne pas surcharger Chakra */
+* {
+  box-sizing: border-box;
+}
+
+/* Support RTL */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .container,
+[dir="rtl"] .container-fluid {
+  padding-right: 15px;
+  padding-left: 15px;
+}

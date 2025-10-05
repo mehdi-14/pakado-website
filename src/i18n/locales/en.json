@@ -1,0 +1,246 @@
+{
+  "navigation": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "changeLanguage": "Change language"
+  },
+  "hero": {
+    "badge": "Pakado Style",
+    "title": "Custom Packaging",
+    "description": "From graphic design to final production, we offer complete offset printing solutions for your packaging, boxes, bags, cups and more.",
+    "buttons": {
+      "quote": "Request a quote",
+      "products": "Discover our products"
+    }
+  },
+  "trustedCompanies": {
+    "badge": "They trust us",
+    "title": "More than 20 companies",
+    "titleHighlight": "trust us"
+  },
+  "about": {
+    "badge": "About us",
+    "title": "Pakado Style, more than just a",
+    "titleHighlight": "printer",
+    "description": "We are not just a packaging supplier. Pakado Style is an offset printing company that supports you from A to Z: graphic design, personalized advice and professional printing. Our mission? Transform your ideas into packaging that reflects your identity and appeals to your customers.",
+    "button": "See more details"
+  },
+  "products": {
+    "badge": "Our Products",
+    "title": "A complete range of",
+    "titleHighlight": "custom packaging",
+    "description": "At Pakado Style, we offer and manufacture packaging that enhances your products and brand. Thanks to offset printing, we guarantee exceptional image quality and premium finishes.",
+    "categories": {
+      "alimentaires": "Food boxes",
+      "barquettes": "Trays & bowls",
+      "gobelets": "Cups & beverage accessories",
+      "sacs": "Bags & takeaway packaging",
+      "accessoires": "Tableware accessories"
+    },
+    "items": {
+      "sandwich_box": {
+        "name": "Sandwich box",
+        "description": "Ideal for practical packaging with optimal customization according to your needs. Customizable dimensions."
+      },
+      "pizza_box": {
+        "name": "Pizza box",
+        "description": "Perfect for your pizzas with high quality custom printing."
+      },
+      "burger_box": {
+        "name": "Burger box",
+        "description": "Eco-friendly and customizable packaging for your burgers."
+      },
+      "sushi_box": {
+        "name": "Sushi box",
+        "description": "Transparent boxes for your sushi with customization possible."
+      },
+      "salad_box": {
+        "name": "Salad box",
+        "description": "Perfect containers for your fresh salads with airtight lid."
+      },
+      "pasta_box": {
+        "name": "Pasta box",
+        "description": "Hot packaging for your pasta dishes with excellent thermal retention."
+      },
+      "plastic_container": {
+        "name": "Plastic tray",
+        "description": "Resistant trays for all types of food."
+      },
+      "cardboard_bowl": {
+        "name": "Cardboard bowl",
+        "description": "Customizable eco-friendly bowls."
+      },
+      "aluminum_container": {
+        "name": "Aluminum tray",
+        "description": "Heat resistant for hot dishes."
+      },
+      "soup_bowl": {
+        "name": "Soup bowl",
+        "description": "Perfect bowls for soups and broths."
+      },
+      "custom_cup": {
+        "name": "Custom cup",
+        "description": "Cups with your logo and design."
+      },
+      "plastic_lid": {
+        "name": "Plastic lid",
+        "description": "Lids compatible with our cups."
+      },
+      "cardboard_cup": {
+        "name": "Cardboard cup",
+        "description": "Eco-friendly recyclable cardboard cups."
+      },
+      "kraft_bag": {
+        "name": "Kraft bag",
+        "description": "Custom kraft paper bags."
+      },
+      "plastic_bag": {
+        "name": "Plastic bag",
+        "description": "Plastic bags with high quality printing."
+      },
+      "reusable_bag": {
+        "name": "Reusable bag",
+        "description": "Customizable eco-friendly reusable bags."
+      },
+      "custom_napkins": {
+        "name": "Custom napkins",
+        "description": "Napkins with your branding."
+      },
+      "placemats": {
+        "name": "Placemats",
+        "description": "Customizable placemats."
+      },
+      "disposable_cutlery": {
+        "name": "Disposable cutlery",
+        "description": "Customizable eco-friendly cutlery."
+      }
+    }
+  },
+  "whyChooseUs": {
+    "badge": "Why us",
+    "title": "Why choose",
+    "titleHighlight": "Pakado Style?",
+    "description": "Your success starts with good packaging",
+    "features": {
+      "ecoResponsible": {
+        "title": "Eco-responsible",
+        "description": "Environmentally friendly materials"
+      },
+      "qualityExpertise": {
+        "title": "Quality expertise",
+        "description": "Premium print quality"
+      },
+      "customService": {
+        "title": "Turnkey service",
+        "description": "From idea to final production"
+      },
+      "customerProximity": {
+        "title": "Customer proximity",
+        "description": "Human and personalized support"
+      }
+    },
+    "stats": {
+      "projectsCompleted": "completed projects",
+      "partners": "partner clients",
+      "experience": "years of experience"
+    }
+  },
+  "footer": {
+    "sections": {
+      "company": "Company",
+      "contact": "Contact us",
+      "legal": "Legal",
+      "social": "Follow us"
+    },
+    "contact": {
+      "address": "69 boulevard moh\nSaid Ouzellaguen"
+    },
+    "legal": {
+      "terms": "Terms of use",
+      "privacy": "Privacy policy"
+    },
+    "copyright": "© 2024 Pakado Style. All Rights Reserved. Powered by DecksinTech"
+  },
+  "faq": {
+    "badge": "FAQ",
+    "title": "Frequently",
+    "titleHighlight": "asked questions",
+    "buttoncta": "Contact us",
+    "description": "Quickly find answers to the most asked questions by our customers about our custom packaging, delivery times, materials and customization options.",
+    "questions": {
+      "designService": {
+        "question": "Do you offer a design service for packaging?",
+        "answer": "Yes, our team of expert designers can create a unique design that reflects your brand's visual identity. You can also bring us your own files and we take care of the printing."
+      },
+      "customPackaging": {
+        "question": "How to order custom packaging?",
+        "answer": "Contact us via our form or by phone. We will discuss your needs, provide you with a detailed quote and take care of the entire production process."
+      },
+      "packagingTypes": {
+        "question": "What types of packaging do you offer?",
+        "answer": "We offer a wide range: food boxes, trays, custom cups, kraft and plastic bags, as well as all customizable tableware accessories."
+      },
+      "ecoFriendly": {
+        "question": "Is custom packaging eco-friendly?",
+        "answer": "Yes, we favor recyclable and eco-responsible materials. Our cardboard and kraft packaging is biodegradable and environmentally friendly."
+      },
+      "deliveryDetails": {
+        "question": "What are the manufacturing and delivery times?",
+        "answer": "Times vary depending on complexity and quantity. Generally, allow 7 to 15 business days after validation of the design and purchase order."
+      }
+    }
+  },
+  "showcase": {
+    "badge": "Achievements",
+    "title": "Packaging that catches the eye, a print that",
+    "titleHighlight": "makes the difference",
+    "description": "At Pakado Style, we believe that packaging is much more than just a container: it's a real communication medium. Each box tells a story that connects us and captures our brand. Discover our achievements with printed quality that makes all the difference."
+  },
+  "quote": {
+    "badge": "Request a quote",
+    "title": "Ready to work with us?",
+    "description": "Request a free quote in 2 minutes",
+    "nextButton": "Next",
+    "previousButton": "Previous",
+    "step1": {
+      "title": "Personal information",
+      "firstName": "First name",
+      "firstNamePlaceholder": "Mohammed",
+      "lastName": "Last name",
+      "lastNamePlaceholder": "Ahmed",
+      "company": "Company name",
+      "companyPlaceholder": "Pakado Style",
+      "phone": "Phone",
+      "phonePlaceholder": "+213 XX XXX XXXX"
+    },
+    "validation": {
+      "required": "This field is required",
+      "invalidPhone": "Invalid phone number",
+      "invalidQuantity": "Invalid quantity"
+    },
+    "step2": {
+      "title": "Project details",
+      "product": "Desired product",
+      "productPlaceholder": "Crepe box",
+      "colorCount": "Number of colors",
+      "colorCountPlaceholder": "XX",
+      "primaryColor": "Primary color:",
+      "helpText": "Didn't find what you were looking for? Click here"
+    },
+    "step3": {
+      "title": "Quantity & Budget",
+      "quantity": "Desired quantity",
+      "quantityPlaceholder": "XXXX",
+      "budget": "Estimated budget"
+    },
+    "submitButton": "Request my free quote",
+    "success": {
+      "title": "Quote sent successfully!",
+      "description": "We will contact you as soon as possible."
+    }
+  },
+    "loading":{
+  "text": "Loading..."
+}
+}

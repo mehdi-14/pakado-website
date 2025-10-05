@@ -1,0 +1,233 @@
+/* Footer.css - Intégration avec Chakra UI color mode */
+
+/* Light mode PAR DÉFAUT */
+:root {
+  --footer-bg-light: rgba(217, 217, 217, 0.1);
+  --footer-title: #050404;
+  --footer-link: #374151;
+  --footer-muted: #6b7280;
+  --footer-copyright: #050404;
+}
+
+/* Dark mode - Chakra ajoute .dark sur <html> */
+html.dark,
+.dark {
+  --footer-bg-light: rgba(234, 92, 22, 0.1);
+  --footer-title: #ffffff;
+  --footer-link: #d1d5db;
+  --footer-muted: #9ca3af;
+  --footer-copyright: #ffffff;
+}
+
+/* Footer.css - Anti-CLS avec dimensions fixes */
+
+.footer-wrapper {
+  min-height: 550px;
+  margin-top: 4rem;
+  padding: 1rem;
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+@media (min-width: 768px) {
+  .footer-wrapper {
+    min-height: 420px;
+    padding: 1.5rem;
+  }
+}
+
+.footer-content {
+  position: relative;
+  background: var(--footer-bg-light); 
+  backdrop-filter: blur(12px);
+  border-radius: 16px;
+  border: 1px solid transparent;
+  overflow: hidden;
+  padding: 2rem 1.5rem;
+  min-height: 500px;
+  contain: layout style paint;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    min-height: 370px;
+  }
+}
+
+/* Gradient border effect */
+.footer-content::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, rgba(243, 146, 0, 0.1) 0%, #EA5C16 100%);
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.footer-container {
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+/* Grid principal */
+.footer-grid-main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+  min-height: 380px;
+}
+
+@media (min-width: 1024px) {
+  .footer-grid-main {
+    grid-template-columns: 300px 1fr;
+    min-height: 280px;
+  }
+}
+
+/* Logo Section */
+.footer-logo-section {
+  min-height: 120px;
+}
+
+.footer-logo {
+  width: 180px;
+  height: 120px;
+}
+
+.footer-logo svg {
+  display: block;
+  width: 180px;
+  height: 120px;
+  color: var(--footer-title);
+}
+
+/* Colonnes de liens */
+.footer-columns {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  min-height: 350px;
+}
+
+@media (min-width: 768px) {
+  .footer-columns {
+    grid-template-columns: repeat(4, 1fr);
+    min-height: 250px;
+  }
+}
+
+/* Colonne individuelle */
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-height: 180px;
+}
+
+.footer-column-contact {
+  min-height: 220px;
+}
+
+.footer-column-legal {
+  min-height: 140px;
+}
+
+.footer-column-social {
+  min-height: 200px;
+}
+
+/* Titre */
+.footer-title {
+  font-weight: 600;
+  font-size: 16px;
+  color: var(--footer-title);
+  margin: 0;
+  min-height: 24px;
+}
+
+/* Liste de liens */
+.footer-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  min-height: 21px;
+}
+
+/* Liens */
+.footer-link {
+  color: var(--footer-link);
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+  display: inline-block;
+  min-height: 21px;
+}
+
+.footer-link:hover {
+  color: #EA5C16;
+}
+
+/* Texte simple */
+.footer-text {
+  color: var(--footer-muted);
+  font-size: 14px;
+  min-height: 21px;
+}
+
+.footer-address {
+  min-height: 42px;
+  margin-top: 0.25rem;
+}
+
+/* Bottom section */
+.footer-bottom {
+  min-height: 60px;
+}
+
+.footer-separator {
+  border: none;
+  border-top: 1px solid var(--footer-muted);
+  margin: 2rem 0;
+  opacity: 0.3;
+  width: 100%;
+}
+
+.footer-copyright {
+  color: var(--footer-copyright);
+  font-size: 12px;
+  text-align: center;
+  margin: 0;
+  min-height: 18px;
+}
+
+/* Optimisations performance */
+* {
+  box-sizing: border-box;
+}
+
+.footer-wrapper * {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force GPU rendering pour animations */
+.footer-link,
+.footer-content {
+  will-change: transform;
+  transform: translateZ(0);
+}

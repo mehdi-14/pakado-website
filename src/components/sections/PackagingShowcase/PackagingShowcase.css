@@ -1,0 +1,34 @@
+/* PackagingShowcase.css - Animations verticales optimisées */
+
+@keyframes slideUp {
+  0% {
+    transform: translateY(0%) translateZ(0);
+  }
+  100% {
+    transform: translateY(-50%) translateZ(0);
+  }
+}
+
+@keyframes slideDown {
+  0% {
+    transform: translateY(-50%) translateZ(0);
+  }
+  100% {
+    transform: translateY(0%) translateZ(0);
+  }
+}
+
+.slider-track-up {
+  animation: slideUp 25s linear infinite;
+  will-change: transform;
+}
+
+.slider-track-down {
+  animation: slideDown 30s linear infinite;
+  will-change: transform;
+}
+
+.slider-track-up:hover,
+.slider-track-down:hover {
+  animation-play-state: paused;
+}
