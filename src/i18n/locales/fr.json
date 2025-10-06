@@ -242,5 +242,16 @@
   },
   "loading":{
   "text": "Chargement..."
-}
+},
+  "testimonials": {
+    "badge": "Témoignages Clients",
+    "title": "Ce que disent nos",
+    "titleHighlight": "partenaires",
+    "description": "La confiance de nos clients est notre plus belle réussite"
+  },
+    "cta": {
+    "title": "Passez au packaging qui marque",
+    "description": "Contactez-nous dès aujourd'hui pour un devis rapide et gratuit sur vos emballages personnalisés",
+    "button": "Contactez-nous"
+  }
 }

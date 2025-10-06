@@ -242,5 +242,17 @@
   },
     "loading":{
   "text": "cargando..."
+},
+  "testimonials": {
+    "badge": "Testimonios de Clientes",
+    "title": "Lo que dicen nuestros",
+    "titleHighlight": "socios",
+    "description": "La confianza de nuestros clientes es nuestro mayor logro"
+  },
+  "cta": {
+  "title": "Pasa al embalaje que deja huella",
+  "description": "Contáctanos hoy para obtener una cotización rápida y gratuita de empaques personalizados",
+  "button": "Contáctanos"
 }
+
 }

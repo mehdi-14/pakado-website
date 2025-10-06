@@ -338,15 +338,22 @@ ProductCard.displayName = 'ProductCard'
 
 // ✅ ProductsDisplay ULTRA-OPTIMISÉ avec RTL fix sans remount
 const ProductsDisplay = memo(({ products, isDesktop, language }) => {
-  const swiperRef = useRef(null)
   const isRTL = useMemo(() => language === 'ar', [language])
+  const [swiperKey, setSwiperKey] = useState(0)
   
-  // ✅ Config Swiper mémorisée avec RTL native
+  // ✅ Recréer le Swiper lors du changement de langue
+  useEffect(() => {
+    if (!isDesktop) {
+      setSwiperKey(prev => prev + 1)
+    }
+  }, [language, isDesktop])
+
+  // ✅ Config Swiper mémorisée - SANS rtl prop qui cause l'erreur
   const swiperConfig = useMemo(() => ({
     modules: [Pagination, Autoplay],
     spaceBetween: 20,
     loop: true,
-    rtl: isRTL, // ✅ RTL natif Swiper
+    dir: isRTL ? 'rtl' : 'ltr', // ✅ Utiliser 'dir' au lieu de 'rtl'
     pagination: {
       clickable: true,
       dynamicBullets: true
@@ -363,100 +370,66 @@ const ProductsDisplay = memo(({ products, isDesktop, language }) => {
     }
   }), [isRTL])
 
-  // ✅ Update Swiper sans destroy/recreate - ULTRA PERFORMANCE
-  useEffect(() => {
-    if (!isDesktop && swiperRef.current?.swiper) {
-      const swiper = swiperRef.current.swiper
-      
-      // ✅ Update direction intelligemment avec requestIdleCallback
-      const updateDirection = () => {
-        try {
-          swiper.changeLanguageDirection(isRTL ? 'rtl' : 'ltr')
-          swiper.update()
-          swiper.updateSlides()
-        } catch (error) {
-          console.warn('Swiper update failed:', error)
-        }
-      }
-
-      if (window.requestIdleCallback) {
-        window.requestIdleCallback(updateDirection)
-      } else {
-        setTimeout(updateDirection, 0)
-      }
-    }
-  }, [language, isDesktop, isRTL])
-
-  // ✅ CSS injection optimisée avec requestIdleCallback
+  // ✅ CSS injection optimisée
   useEffect(() => {
     if (isDesktop) return
 
-    const injectStyles = () => {
-      const existingStyle = document.getElementById('products-swiper-styles')
-      if (existingStyle) existingStyle.remove()
-
-      const style = document.createElement('style')
-      style.id = 'products-swiper-styles'
-      style.innerHTML = `
-        .products-swiper {
-          direction: ${isRTL ? 'rtl' : 'ltr'} !important;
-        }
-        
-        .products-swiper .swiper-wrapper {
-          direction: ${isRTL ? 'rtl' : 'ltr'} !important;
-        }
-        
-        .products-swiper .swiper-pagination {
-          bottom: 10px !important;
-          direction: ltr !important;
-        }
-        
-        .products-swiper .swiper-pagination-bullet {
-          width: 12px;
-          height: 12px;
-          background: rgba(243, 146, 0, 0.3);
-          opacity: 1;
-          transition: all 0.3s ease;
-        }
-        
-        .products-swiper .swiper-pagination-bullet-active {
-          background: #F39200;
-          transform: scale(1.2);
-        }
-        
-        .products-swiper .swiper-pagination-bullet:hover {
-          background: #EA5C16;
-        }
-      `
-      document.head.appendChild(style)
-    }
-
-    if (window.requestIdleCallback) {
-      window.requestIdleCallback(injectStyles)
-    } else {
-      setTimeout(injectStyles, 0)
-    }
+    const style = document.createElement('style')
+    style.id = 'products-swiper-styles'
+    style.innerHTML = `
+      .products-swiper {
+        direction: ${isRTL ? 'rtl' : 'ltr'};
+      }
+      
+      .products-swiper .swiper-wrapper {
+        direction: ${isRTL ? 'rtl' : 'ltr'};
+      }
+      
+      .products-swiper .swiper-pagination {
+        bottom: 10px !important;
+        direction: ltr !important;
+      }
+      
+      .products-swiper .swiper-pagination-bullet {
+        width: 12px;
+        height: 12px;
+        background: rgba(243, 146, 0, 0.3);
+        opacity: 1;
+        transition: all 0.3s ease;
+      }
+      
+      .products-swiper .swiper-pagination-bullet-active {
+        background: #F39200;
+        transform: scale(1.2);
+      }
+      
+      .products-swiper .swiper-pagination-bullet:hover {
+        background: #EA5C16;
+      }
+    `
+    
+    // Remplacer l'ancien style
+    const existingStyle = document.getElementById('products-swiper-styles')
+    if (existingStyle) existingStyle.remove()
+    document.head.appendChild(style)
 
     return () => {
-      const existingStyle = document.getElementById('products-swiper-styles')
-      if (existingStyle) existingStyle.remove()
+      const styleToRemove = document.getElementById('products-swiper-styles')
+      if (styleToRemove) styleToRemove.remove()
     }
   }, [isDesktop, isRTL])
 
-  // ✅ Slides mémorisées avec priority pour LCP
+  // ✅ Slides mémorisées
   const swiperSlides = useMemo(() => 
     products.map((product, index) => (
-      <SwiperSlide 
-        key={product.id}
-        style={{ direction: isRTL ? 'rtl' : 'ltr' }}
-      >
+      <SwiperSlide key={product.id}>
         <ProductCard 
           product={product} 
-          priority={index === 0} // ✅ First slide priority pour LCP
+          priority={index === 0}
         />
       </SwiperSlide>
     )), 
-    [products, isRTL]
+    [products]
   )
 
   if (isDesktop) {
@@ -468,13 +441,13 @@ const ProductsDisplay = memo(({ products, isDesktop, language }) => {
           lg: "repeat(3, 1fr)"
         }}
         gap={6}
-        style={{ direction: isRTL ? 'rtl' : 'ltr' }}
+        dir={isRTL ? 'rtl' : 'ltr'}
       >
         {products.map((product, index) => (
           <GridItem key={product.id}>
             <ProductCard 
               product={product} 
-              priority={index < 3} // ✅ First 3 items priority pour LCP
+              priority={index < 3}
             />
           </GridItem>
         ))}
@@ -485,11 +458,11 @@ const ProductsDisplay = memo(({ products, isDesktop, language }) => {
   return (
     <Box 
       position="relative" 
-      style={{ direction: isRTL ? 'rtl' : 'ltr' }}
-      willChange="transform" // ✅ CLS prevention
+      dir={isRTL ? 'rtl' : 'ltr'}
+      willChange="transform"
     >
       <Swiper
-        ref={swiperRef}
+        key={swiperKey}
         {...swiperConfig}
         style={{
           paddingBottom: '50px',

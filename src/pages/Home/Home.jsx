@@ -14,6 +14,8 @@ const FAQ = lazy(() => import("../../components/sections/FAQ/FAQ"))
 const PackagingShowcase = lazy(() => import("../../components/sections/PackagingShowcase/PackagingShowcase"))
 const Testimonials = lazy(() => import("../../components/sections/Testimonials/Testimonials"))
 const QuoteForm = lazy(() => import("../../components/sections/QuoteForm/QuoteForm"))
+const CurvedMarquee = lazy(() => import("../../components/sections/CurvedMarquee/CurvedMarquee"))
+const CTASection = lazy(() => import("../../components/sections/CTASection/CTASection"))
 
 export default function Home() {
   const seoTags = useSEO({
@@ -39,6 +41,10 @@ export default function Home() {
       <Suspense fallback={<div style={{height: '300px'}} />}>
         <Products />
       </Suspense>
+
+      <Suspense fallback={<div style={{height: '150px'}} />}>
+        <CurvedMarquee />
+      </Suspense>
       
       <Suspense fallback={<div style={{height: '250px'}} />}>
         <WhyChooseUs />
@@ -58,6 +64,10 @@ export default function Home() {
       
       <Suspense fallback={<div style={{height: '250px'}} />}>
         <FAQ />
+      </Suspense>
+
+            <Suspense fallback={<div style={{height: '200px'}} />}>
+        <CTASection/>
       </Suspense>
     </Box>
   )

@@ -242,5 +242,16 @@
   },
     "loading":{
   "text": "Loading..."
-}
+},
+  "testimonials": {
+    "badge": "Client Testimonials",
+    "title": "What our",
+    "titleHighlight": "partners say",
+    "description": "Our clients' trust is our greatest achievement"
+  },
+    "cta": {
+    "title": "Switch to Packaging that Makes a Mark",
+    "description": "Contact us today for a quick and free quote on your custom packaging",
+    "button": "Contact Us"
+  }
 }
