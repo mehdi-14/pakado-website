@@ -14,7 +14,6 @@ const FAQ = lazy(() => import("../../components/sections/FAQ/FAQ"))
 const PackagingShowcase = lazy(() => import("../../components/sections/PackagingShowcase/PackagingShowcase"))
 const Testimonials = lazy(() => import("../../components/sections/Testimonials/Testimonials"))
 const QuoteForm = lazy(() => import("../../components/sections/QuoteForm/QuoteForm"))
-const CurvedMarquee = lazy(() => import("../../components/sections/CurvedMarquee/CurvedMarquee"))
 const CTASection = lazy(() => import("../../components/sections/CTASection/CTASection"))
 
 export default function Home() {
@@ -40,10 +39,6 @@ export default function Home() {
       
       <Suspense fallback={<div style={{height: '300px'}} />}>
         <Products />
-      </Suspense>
-
-      <Suspense fallback={<div style={{height: '150px'}} />}>
-        <CurvedMarquee />
       </Suspense>
       
       <Suspense fallback={<div style={{height: '250px'}} />}>
