@@ -31,6 +31,11 @@ const config = defineConfig({
             value: { _light: "#050404", _dark: "#ffffff" }
           },
         },
+        mg: {
+          DEFAULT: { 
+            value: { _light: "#ffffffs", _dark: "#050404" }
+          },
+        },
         primary: {
           DEFAULT: { 
             value: { _light: "#EA5C16", _dark: "#EA5C16" }

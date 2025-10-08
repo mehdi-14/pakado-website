@@ -13,6 +13,7 @@ import {
 import { useTranslation } from 'react-i18next'
 import { useState, useCallback, useMemo, memo } from 'react'
 import { HiPlus, HiMinus } from 'react-icons/hi'
+import { Link as RouterLink } from 'react-router-dom'
 import SectionBadge from "../../ui/SectionBadge"
 import GradientButton from "../../ui/GradientButton"
 
@@ -266,9 +267,12 @@ export default function FAQ() {
 
               {/* CTA Button */}
               <Box pt={3} alignSelf="flex-start">
-                <GradientButton to="/contact" size="md">
-                  {translations.buttonText}
-                </GradientButton>
+<GradientButton 
+  to="/contact"
+  size="md"
+>
+  {translations.buttonText}
+</GradientButton>
               </Box>
               
             </VStack>

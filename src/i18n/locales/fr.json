@@ -160,7 +160,7 @@
       "terms": "Conditions d'utilisation",
       "privacy": "Politique de confidentialité"
     },
-    "copyright": "© 2024 Pakado Style. All Rights Reserved. Powered by DecksinTech"
+    "copyright": "© 2024 Pakado Style. All Rights Reserved. Powered by DockinTech"
   },
    "faq": {
     "badge": "FAQ",
@@ -226,7 +226,17 @@
       "colorCount": "Nombre de couleurs",
       "colorCountPlaceholder": "XX",
       "primaryColor": "Couleur principale :",
-      "helpText": "Vous n'avez pas trouvé ce que vous cherchiez ? Cliquez-ici"
+      "helpText": "Vous n'avez pas trouvé ce que vous cherchiez ? Cliquez-ici",
+      "notFound": "Vous n'avez pas trouvé ce que vous cherchiez ?",
+      "clickHere": "Cliquez-ici"
+    },
+        "dimensionsModal": {
+      "title": "Mesurez votre produit, trouvez l'emballage idéal",
+      "length": "Longueur",
+      "width": "Largeur",
+      "height": "Hauteur",
+      "cancel": "Annuler",
+      "confirm": "Confirmer"
     },
      "step3": {
       "title": "Quantité & Budget",
@@ -253,5 +263,62 @@
     "title": "Passez au packaging qui marque",
     "description": "Contactez-nous dès aujourd'hui pour un devis rapide et gratuit sur vos emballages personnalisés",
     "button": "Contactez-nous"
+  },
+    "contact": {
+    "header": {
+      "title": "Contactez-nous",
+      "description": "Une équipe à votre écoute pour concrétiser vos projets dématérialisé personnalisé"
+    },
+   "cards": {
+      "email": {
+        "title": "E-mail",
+        "value": "Paleodietary@gmail.com"
+      },
+      "phone": {
+        "title": "Téléphone", 
+        "value": "+216 797 41 30 10"
+      },
+      "office": {
+        "title": "Bureau",
+        "value": "Nouvelle ville\nTizi ouzou"
+      }
+    },
+     "whatsapp": {
+      "badge": "WhatsApp",
+      "title": "Contactez-nous sur WhatsApp",
+      "description": "Besoin d'une réponse rapide ? Contactez nos maintenent Paladin sur WhatsApp pour obtenir une réponse immédiate à toutes vos demandes dématérialisé",
+      "button": "Discuter sur WhatsApp"
+    },
+    "form": {
+      "badge": "Envoyez-nous un message",
+      "title": "Envoyez-nous un message",
+      "description": "Nous réviserons et vous nous dans les plus brefs délais pour discuter de votre projet immobilier.",
+      "firstName": "Nom",
+      "firstNamePlaceholder": "Mohammed",
+      "lastName": "Prénom", 
+      "lastNamePlaceholder": "Ahmed",
+      "email": "E-mail",
+      "emailPlaceholder": "mohammed.ahmed@example.com",
+      "phone": "Téléphone",
+      "phonePlaceholder": "+216 XXX XXX",
+      "message": "Message",
+      "messagePlaceholder": "Votre message ici...",
+      "submitButton": "Envoyer-nous un message",
+      "validation": {
+        "required": "Ce champ est obligatoire",
+        "invalidEmail": "Email invalide",
+        "invalidPhone": "Numéro de téléphone invalide"
+      },
+      "success": {
+        "title": "Message envoyé !",
+        "description": "Nous vous répondrons dans les plus brefs délais."
+      }
+    },
+     "location": {
+      "badge": "Notre localisation",
+      "title": "Trouvez-nous facilement",
+      "description": "Notre bureau est situé dans un endroit facilement accessible. N'hésitez pas à nous rendre visite.",
+      "address": "Nouvelle ville, Tizi Ouzou, Algérie"
+    }
   }
 }

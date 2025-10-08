@@ -11,26 +11,23 @@ import {
 import { HiArrowUpRight } from "react-icons/hi2"
 import { useTranslation } from 'react-i18next'
 import { useMemo } from 'react'
-import { Link as RouterLink } from 'react-router-dom'
-import SectionBadge from "../../ui/SectionBadge"
+import SectionBadge from "../../../ui/SectionBadge"
 
-export default function About() {
+export default function WhatsAppSection() {
   const { t, i18n } = useTranslation()
   const isRTL = i18n.language === 'ar'
 
   // Mémoriser les traductions
   const translations = useMemo(() => ({
-    badge: t('about.badge'),
-    title: t('about.title'),
-    titleHighlight: t('about.titleHighlight'),
-    description: t('about.description'),
-    button: t('faq.buttoncta')
+    badge: t('contact.whatsapp.badge'),
+    title: t('contact.whatsapp.title'),
+    description: t('contact.whatsapp.description'),
+    button: t('contact.whatsapp.button')
   }), [t])
 
   return (
     <Box as="section" py={{ base: 10, md: 10 }}>
       <Container maxW="7xl">
-        
         <Box
           bg="footerBg"
           borderRadius="20px"
@@ -53,7 +50,6 @@ export default function About() {
             pointerEvents: "none",
           }}
         >
-          
           <Grid 
             templateColumns={{ base: "1fr", lg: "1fr 1fr" }}
             gap={{ base: 8, lg: 12 }}
@@ -63,7 +59,6 @@ export default function About() {
             
             {/* Colonne de contenu */}
             <GridItem>
-              
               <SectionBadge variant="primary" size="md">
                 {translations.badge}
               </SectionBadge>
@@ -77,26 +72,7 @@ export default function About() {
                 lineHeight="1.2"
                 fontFamily="body"
               >
-                <Text as="span" color="fg">
-                  {translations.title}{" "}
-                </Text>
-                <Text 
-                  as="span" 
-                  background="linear-gradient(90deg, #F39200 0%, #EA5C16 50%, #F39200 100%)"
-                  backgroundSize="200% 100%"
-                  bgClip="text"
-                  color="transparent"
-                  animation="gradientMove 3s ease-in-out infinite"
-                  sx={{
-                    '@keyframes gradientMove': {
-                      '0%': { backgroundPosition: '0% 50%' },
-                      '50%': { backgroundPosition: '100% 50%' },
-                      '100%': { backgroundPosition: '0% 50%' }
-                    }
-                  }}
-                >
-                  {translations.titleHighlight}
-                </Text>
+                {translations.title}
               </Heading>
 
               <Text 
@@ -108,41 +84,37 @@ export default function About() {
                 {translations.description}
               </Text>
 
-             <Button
-  as={RouterLink}
-  to={`/${i18n.language}/contact`}
-  size="md"
-  variant="outline"
-  borderColor="primary"
-  color="fg"
-  bg="transparent"
-  _hover={{
-    bg: "primary",
-    color: "white",
-    transform: "translateY(-2px)",
-    boxShadow: "0 8px 25px rgba(234, 92, 22, 0.2)",
-    textDecoration: "none"
-  }}
-  _active={{
-    transform: "translateY(0)",
-  }}
-  transition="all 0.3s ease"
-  px={5}
-  h="52px"
-  fontSize="16px"
-  fontWeight="600"
-  borderRadius="12px"
->
-  {translations.button}
-  <Box 
-    as={HiArrowUpRight}
-    ml={isRTL ? 0 : 2}
-    mr={isRTL ? 2 : 0}
-    transform={isRTL ? 'rotate(180deg)' : 'none'}
-    fontSize="16px"
-  />
-</Button>
-              
+              <Button
+                size="md"
+                variant="outline"
+                borderColor="primary"
+                color="fg"
+                bg="transparent"
+                _hover={{
+                  bg: "primary",
+                  color: "white",
+                  transform: "translateY(-2px)",
+                  boxShadow: "0 8px 25px rgba(234, 92, 22, 0.2)"
+                }}
+                _active={{
+                  transform: "translateY(0)",
+                }}
+                transition="all 0.3s ease"
+                px={5}
+                h="52px"
+                fontSize="16px"
+                fontWeight="600"
+                borderRadius="12px"
+              >
+                {translations.button}
+                <Box 
+                  as={HiArrowUpRight}
+                  ml={isRTL ? 0 : 2}
+                  mr={isRTL ? 2 : 0}
+                  transform={isRTL ? 'rotate(180deg)' : 'none'}
+                  fontSize="16px"
+                />
+              </Button>
             </GridItem>
 
             {/* Colonne image */}
@@ -160,8 +132,8 @@ export default function About() {
                 h={{ base: "300px", md: "400px" }}
               >
                 <Image
-                  src="/images/about-pakado.webp"
-                  alt="Pakado Style - Emballages et impression"
+                  src="/images/whatsapp-contact.webp"
+                  alt="Contactez-nous sur WhatsApp"
                   width={600}
                   height={400}
                   w="100%"
@@ -173,16 +145,16 @@ export default function About() {
                     <Box
                       w="100%"
                       h="100%"
-                      bg="linear-gradient(135deg, rgba(243, 146, 0, 0.1) 0%, rgba(234, 92, 22, 0.1) 100%)"
+                      bg="linear-gradient(135deg, rgba(37, 211, 102, 0.1) 0%, rgba(37, 211, 102, 0.2) 100%)"
                       display="flex"
                       alignItems="center"
                       justifyContent="center"
                       borderRadius="16px"
                     >
-                      <Text color="primary" fontSize="sm" textAlign="center">
-                        Image Pakado Style
+                      <Text color="#25D366" fontSize="sm" textAlign="center">
+                        Image WhatsApp
                         <br />
-                        (Packaging & Printing)
+                        (Contact direct)
                       </Text>
                     </Box>
                   }
@@ -191,7 +163,7 @@ export default function About() {
                 <Box
                   position="absolute"
                   inset={0}
-                  bg="linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(234, 92, 22, 0.1) 100%)"
+                  bg="linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(37, 211, 102, 0.1) 100%)"
                   borderRadius="16px"
                   opacity={0}
                   _hover={{ opacity: 1 }}
@@ -199,11 +171,8 @@ export default function About() {
                 />
               </Box>
             </GridItem>
-            
           </Grid>
-          
         </Box>
-        
       </Container>
     </Box>
   )

@@ -161,7 +161,7 @@ export default function Hero() {
           {/* Bouton Demander un devis - Gradient */}
           <Box w={{ base: "full", sm: "auto" }}>
             <GradientButton 
-              to="/contact"
+              scrollTo="quote"
               size="md"
               isFullWidth={{ base: true, sm: false }}
             >
@@ -171,37 +171,50 @@ export default function Hero() {
 
 {/* Bouton Découvrir nos produits - Transparent avec bordure */}
 <Box w={{ base: "full", sm: "auto" }}>
-  <Button
-    size="md"
-    variant="outline"
-    borderColor="primary"
-    color="fg"
-    bg="transparent"
-    _hover={{
-      bg: "primary",
-      color: "white",
-      transform: "translateY(-2px)",
-      boxShadow: "0 8px 25px rgba(234, 92, 22, 0.2)"
-    }}
-    _active={{
-      transform: "translateY(0)",
-    }}
-    transition="all 0.3s ease"
-    px={5}
-    h="52px"
-    fontSize="16px"
-    fontWeight="600"
-    borderRadius="12px"
-    w={{ base: "full", sm: "auto" }}
-  >
-    {t('hero.buttons.products')}
-    <Box 
-      as={HiArrowUpRight}  
-      ml={isRTL ? 0 : 2}
-      mr={isRTL ? 2 : 0}
-      transform={isRTL ? 'rotate(180deg)' : 'none'}
-    />
-  </Button>
+<Button
+  size="md"
+  variant="outline"
+  borderColor="primary"
+  color="fg"
+  bg="transparent"
+  _hover={{
+    bg: "primary",
+    color: "white",
+    transform: "translateY(-2px)",
+    boxShadow: "0 8px 25px rgba(234, 92, 22, 0.2)"
+  }}
+  _active={{
+    transform: "translateY(0)",
+  }}
+  transition="all 0.3s ease"
+  px={5}
+  h="52px"
+  fontSize="16px"
+  fontWeight="600"
+  borderRadius="12px"
+  w={{ base: "full", sm: "auto" }}
+  onClick={() => {
+    const element = document.getElementById('products')
+    if (element) {
+      const headerOffset = 100
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }}
+>
+  {t('hero.buttons.products')}
+  <Box 
+    as={HiArrowUpRight}  
+    ml={isRTL ? 0 : 2}
+    mr={isRTL ? 2 : 0}
+    transform={isRTL ? 'rotate(180deg)' : 'none'}
+  />
+</Button>
 </Box>
         </HStack>
       </Container>

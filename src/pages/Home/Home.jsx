@@ -34,11 +34,15 @@ export default function Home() {
       
       {/* ✅ Sections non-critiques - lazy loading avec intersection observer */}
       <Suspense fallback={<div style={{height: '200px'}} />}>
-        <About />
+      <Box id="about">
+      <About />
+    </Box>
       </Suspense>
       
       <Suspense fallback={<div style={{height: '300px'}} />}>
+      <Box id="products">
         <Products />
+        </Box>
       </Suspense>
       
       <Suspense fallback={<div style={{height: '250px'}} />}>
@@ -54,7 +58,9 @@ export default function Home() {
       </Suspense>
       
       <Suspense fallback={<div style={{height: '200px'}} />}>
-        <QuoteForm />
+       <Box id="quote">
+      <QuoteForm />
+    </Box>
       </Suspense>
       
       <Suspense fallback={<div style={{height: '250px'}} />}>

@@ -1,11 +1,11 @@
 import { useMemo, memo } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import { Link as RouterLink, useNavigate, useLocation } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import './Footer.css'; // Tu vas créer ce fichier CSS
+import './Footer.css';
 
-const PakadoLogoFooter = memo(() => {
+const PakadoLogoFooter = memo(({ language }) => {
   return (
-    <div className="footer-logo">
+    <RouterLink to={`/${language}`} className="footer-logo">
       <svg 
         width="180" 
         height="120" 
@@ -20,21 +20,22 @@ const PakadoLogoFooter = memo(() => {
           fill="currentColor"
         />
       </svg>
-    </div>
+    </RouterLink>
   );
 });
 PakadoLogoFooter.displayName = 'PakadoLogoFooter';
 
 export default function Footer() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const footerData = useMemo(() => ({
-  entreprise: [
-    { label: t('navigation.home'), to: '/' },
-    { label: t('navigation.about'), to: '/a-propos' },
-    { label: t('navigation.products'), to: '/produits' }, 
-    { label: t('navigation.contact'), to: '/contact' }
-  ],
+    entreprise: [
+      { label: t('navigation.home'), to: `/${i18n.language}`, type: 'link' },
+      { label: t('navigation.about'), to: 'about', type: 'scroll' },
+      { label: t('navigation.contact'), to: `/${i18n.language}/contact`, type: 'link' }
+    ],
     contact: {
       phones: ['0770553975', '0671947928'],
       email: 'pakadostyle@gmail.com',
@@ -50,7 +51,7 @@ export default function Footer() {
       { label: 'Twitter', href: 'https://twitter.com/pakadostyle' },
       { label: 'Tik Tok', href: 'https://tiktok.com/@pakadostyle' }
     ]
-  }), [t]);
+  }), [t, i18n.language]);
 
   const sectionTitles = useMemo(() => ({
     company: t('footer.sections.company'),
@@ -61,6 +62,48 @@ export default function Footer() {
 
   const copyrightText = useMemo(() => t('footer.copyright'), [t]);
 
+  // Fonction pour gérer le scroll vers une section
+  const handleScrollToSection = (sectionId) => {
+    // Si on n'est pas sur la home, aller d'abord à la home
+    if (location.pathname !== `/${i18n.language}`) {
+      navigate(`/${i18n.language}`)
+      
+      // Fonction récursive pour attendre que l'élément existe
+      const scrollToElement = () => {
+        const element = document.getElementById(sectionId)
+        if (element) {
+          const headerOffset = 100
+          const elementPosition = element.getBoundingClientRect().top
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          })
+        } else {
+          // Réessayer si l'élément n'existe pas encore
+          setTimeout(scrollToElement, 100)
+        }
+      }
+      
+      // Attendre que la navigation soit terminée
+      setTimeout(scrollToElement, 300)
+    } else {
+      // Si on est déjà sur la home, juste scroller
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const headerOffset = 100
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      }
+    }
+  }
+
   return (
     <footer className="footer-wrapper">
       <div className="footer-content">
@@ -70,7 +113,7 @@ export default function Footer() {
             
             {/* Logo */}
             <div className="footer-logo-section">
-              <PakadoLogoFooter />
+              <PakadoLogoFooter language={i18n.language} />
             </div>
             
             {/* Colonnes */}
@@ -82,9 +125,26 @@ export default function Footer() {
                 <ul className="footer-links">
                   {footerData.entreprise.map((item, index) => (
                     <li key={index}>
-                      <RouterLink to={item.to} className="footer-link">
-                        {item.label}
-                      </RouterLink>
+                      {item.type === 'scroll' ? (
+                        <button
+                          onClick={() => handleScrollToSection(item.to)}
+                          className="footer-link"
+                          style={{ 
+                            background: 'none', 
+                            border: 'none', 
+                            cursor: 'pointer', 
+                            padding: 0,
+                            font: 'inherit',
+                            textAlign: 'left'
+                          }}
+                        >
+                          {item.label}
+                        </button>
+                      ) : (
+                        <RouterLink to={item.to} className="footer-link">
+                          {item.label}
+                        </RouterLink>
+                      )}
                     </li>
                   ))}
                 </ul>

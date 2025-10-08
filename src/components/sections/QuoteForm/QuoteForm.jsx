@@ -17,10 +17,87 @@ import {
   useListCollection,
   useFilter
 } from "@chakra-ui/react"
+import emailjs from '@emailjs/browser'
 import { useTranslation } from 'react-i18next'
 import { useState, useCallback, useMemo, memo, useId } from 'react'
 import SectionBadge from "../../ui/SectionBadge"
 import GradientButton from "../../ui/GradientButton"
+
+
+// 🔑 Configuration EmailJS - REMPLACE PAR TES VRAIES CLÉS
+const EMAILJS_CONFIG = {
+  publicKey: 'KrsymJ5Qb52JA8aPa',      // ⚠️ À remplacer
+  serviceId: 'service_qoqkqpi',      // ⚠️ À remplacer
+  templateId: 'template_ncs45pe'     // ⚠️ À remplacer
+}
+
+// 📧 VERSION DEBUG - Pour voir ce qui est envoyé
+const sendQuoteEmail = async (formData) => {
+  try {
+    // 🎨 Labels des produits en français
+    const productLabels = {
+      'crepe-box': 'Boite à crêpe',
+      'pizza-box': 'Boite à pizza',
+      'food-box': 'Boite alimentaire',
+      'custom-cup': 'Gobelet personnalisé',
+      'kraft-bag': 'Sac kraft',
+      'plastic-bag': 'Sac plastique',
+      'food-container': 'Barquette alimentaire',
+      'sandwich-wrap': 'Emballage sandwich',
+      'pastry-box': 'Boite pâtisserie',
+      'burger-box': 'Emballage burger'
+    }
+
+    const colorCountLabels = {
+      '1': '1 couleur',
+      '2': '2 couleurs',
+      '3': '3 couleurs',
+      '4': '4 couleurs',
+      '5+': '+5 couleurs'
+    }
+
+const formattedBudget = formData.step3.budget 
+  ? new Intl.NumberFormat('fr-DZ', {
+      style: 'decimal',
+      minimumFractionDigits: 0
+    }).format(formData.step3.budget) + ' DA'
+  : 'Non spécifié'
+
+const templateParams = {
+  firstName: formData.step1.firstName,
+  lastName: formData.step1.lastName,
+  company: formData.step1.company,
+  phone: formData.step1.phone,
+  product: formData.step2.customDimensions 
+    ? `Dimensions personnalisées: ${formData.step2.customDimensions.length}mm x ${formData.step2.customDimensions.width}mm x ${formData.step2.customDimensions.height}mm`
+    : productLabels[formData.step2.product] || formData.step2.product,
+  colorCount: colorCountLabels[formData.step2.colorCount] || formData.step2.colorCount,
+  primaryColor: formData.step2.primaryColor,
+  quantity: formData.step3.quantity,
+  budget: formattedBudget
+}
+
+    // 🐛 AFFICHE LES DONNÉES DANS LA CONSOLE
+    console.log('📧 Données envoyées à EmailJS:')
+    console.log('Config:', EMAILJS_CONFIG)
+    console.log('Template Params:', templateParams)
+
+    const response = await emailjs.send(
+      EMAILJS_CONFIG.serviceId,
+      EMAILJS_CONFIG.templateId,
+      templateParams,
+      EMAILJS_CONFIG.publicKey
+    )
+
+    console.log('✅ Succès:', response)
+    return { success: true, response }
+  } catch (error) {
+    console.error('❌ Erreur complète:', error)
+    console.error('Status:', error.status)
+    console.error('Text:', error.text)
+    return { success: false, error }
+  }
+}
 
 // ✅ Toast personnalisé en BAS À DROITE avec animation améliorée
 const useToast = () => {
@@ -48,7 +125,7 @@ const useToast = () => {
       {toasts.map(toast => (
         <Box
           key={toast.id}
-          bg="green.500"
+          bg={toast.type === 'error' ? "red.500" : "green.500"}
           color="white"
           p={4}
           mb={2}
@@ -590,6 +667,239 @@ const OptimizedColorPicker = memo(({
 })
 OptimizedColorPicker.displayName = 'OptimizedColorPicker'
 
+
+// ✅ Modal personnalisé pour les dimensions
+const DimensionsModal = memo(({ isOpen, onClose, onConfirm }) => {
+  const { t } = useTranslation()
+  const [dimensions, setDimensions] = useState({
+    length: '',
+    width: '',
+    height: ''
+  })
+
+  const handleInputChange = useCallback((field) => (e) => {
+    setDimensions(prev => ({
+      ...prev,
+      [field]: e.target.value
+    }))
+  }, [])
+
+const handleConfirm = useCallback(() => {
+  // ✅ Validation basique
+  if (!dimensions.length || !dimensions.width || !dimensions.height) {
+    console.warn('Toutes les dimensions sont requises')
+    return
+  }
+
+  // ✅ Sauvegarder les dimensions et fermer
+  onConfirm(dimensions)
+  setDimensions({ length: '', width: '', height: '' })
+  onClose()
+}, [dimensions, onClose, onConfirm])
+
+  const handleCancel = useCallback(() => {
+    setDimensions({ length: '', width: '', height: '' })
+    onClose()
+  }, [onClose])
+
+  if (!isOpen) return null
+
+  return (
+    <Box
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      bottom={0}
+      bg="rgba(0, 0, 0, 0.6)"
+      backdropFilter="blur(8px)"
+      zIndex={9999}
+      display="flex"
+      alignItems="center"
+      justifyContent="center"
+      p={4}
+      onClick={onClose}
+    >
+      <Box
+        bg="bg"
+        border="1px solid"
+        borderColor="primary"
+        borderRadius="16px"
+        p={{ base: 4, md: 6 }}
+        maxW="500px"
+        w="100%"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <Text 
+          fontSize="lg" 
+          fontWeight="600" 
+          color="fg" 
+          mb={6} 
+          textAlign="center"
+        >
+          {t('quote.dimensionsModal.title')}
+        </Text>
+
+        <HStack spacing={4} mb={6} align="flex-start">
+          {/* Longueur */}
+          <Box flex={1}>
+            <Text 
+              fontSize="sm" 
+              fontWeight="600" 
+              color="textSecondary" 
+              mb={2}
+            >
+              {t('quote.dimensionsModal.length')}
+            </Text>
+            <Input
+              type="number"
+              placeholder="0"
+              value={dimensions.length}
+              onChange={handleInputChange('length')}
+              bg="footerBg"
+              backdropFilter="blur(12px)"
+              border="1px solid"
+              borderColor="primary"
+              borderRadius="8px"
+              h="48px"
+              color="fg"
+              _placeholder={{ color: "textSecondary" }}
+              _focus={{
+                borderColor: "primary",
+                outline: "none"
+              }}
+              textAlign="center"
+            />
+            <Text 
+              fontSize="xs" 
+              color="textSecondary" 
+              mt={1} 
+              textAlign="center"
+            >
+              mm
+            </Text>
+          </Box>
+
+          {/* Largeur */}
+          <Box flex={1}>
+            <Text 
+              fontSize="sm" 
+              fontWeight="600" 
+              color="textSecondary" 
+              mb={2}
+            >
+              {t('quote.dimensionsModal.width')}
+            </Text>
+            <Input
+              type="number"
+              placeholder="0"
+              value={dimensions.width}
+              onChange={handleInputChange('width')}
+              bg="footerBg"
+              backdropFilter="blur(12px)"
+              border="1px solid"
+              borderColor="primary"
+              borderRadius="8px"
+              h="48px"
+              color="fg"
+              _placeholder={{ color: "textSecondary" }}
+              _focus={{
+                borderColor: "primary",
+                outline: "none"
+              }}
+              textAlign="center"
+            />
+            <Text 
+              fontSize="xs" 
+              color="textSecondary" 
+              mt={1} 
+              textAlign="center"
+            >
+              mm
+            </Text>
+          </Box>
+
+          {/* Hauteur */}
+          <Box flex={1}>
+            <Text 
+              fontSize="sm" 
+              fontWeight="600" 
+              color="textSecondary" 
+              mb={2}
+            >
+              {t('quote.dimensionsModal.height')}
+            </Text>
+            <Input
+              type="number"
+              placeholder="0"
+              value={dimensions.height}
+              onChange={handleInputChange('height')}
+              bg="footerBg"
+              backdropFilter="blur(12px)"
+              border="1px solid"
+              borderColor="primary"
+              borderRadius="8px"
+              h="48px"
+              color="fg"
+              _placeholder={{ color: "textSecondary" }}
+              _focus={{
+                borderColor: "primary",
+                outline: "none"
+              }}
+              textAlign="center"
+            />
+            <Text 
+              fontSize="xs" 
+              color="textSecondary" 
+              mt={1} 
+              textAlign="center"
+            >
+              mm
+            </Text>
+          </Box>
+        </HStack>
+
+        {/* Boutons alignés à droite */}
+        <HStack spacing={3} justify="flex-end">
+          <Box
+            as="button"
+            onClick={handleCancel}
+            px={6}
+            py={2}
+            h="48px"
+            bg="transparent"
+            border="1px solid"
+            borderColor="fg"
+            color="fg"
+            borderRadius="8px"
+            fontSize="md"
+            fontWeight="600"
+            cursor="pointer"
+            transition="all 0.2s ease"
+            _hover={{
+              bg: "fg",
+              color: "bg"
+            }}
+          >
+            {t('quote.dimensionsModal.cancel')}
+          </Box>
+          
+          <GradientButton
+            onClick={handleConfirm}
+            size="md"
+          >
+            {t('quote.dimensionsModal.confirm')}
+          </GradientButton>
+        </HStack>
+      </Box>
+    </Box>
+  )
+})
+DimensionsModal.displayName = 'DimensionsModal'
+
+
+
+
 // ✅ Slider SIMPLE avec bordures comme circles [attached_image:2]
 const SimpleSlider = memo(({ 
   min, 
@@ -794,6 +1104,24 @@ Step1PersonalInfo.displayName = 'Step1PersonalInfo'
 const Step2ProjectDetails = memo(({ formData, updateFormData, errors, clearFieldError }) => {
   const { t } = useTranslation()
 
+  const [isModalOpen, setIsModalOpen] = useState(false)
+
+const handleOpenModal = useCallback(() => {
+  setIsModalOpen(true)
+}, [])
+
+const handleCloseModal = useCallback(() => {
+  setIsModalOpen(false)
+}, [])
+
+const handleModalConfirm = useCallback((dimensions) => {
+  // ✅ Sauvegarder les dimensions dans le formData
+  updateFormData('step2', { 
+    ...formData.step2, 
+    customDimensions: dimensions
+  })
+}, [formData.step2, updateFormData])
+
   const productOptions = useMemo(() => [
     { label: 'Boite à crêpe', value: 'crepe-box' },
     { label: 'Boite à pizza', value: 'pizza-box' },
@@ -864,7 +1192,7 @@ const Step2ProjectDetails = memo(({ formData, updateFormData, errors, clearField
           options={productOptions}
           error={errors.step2?.product}
           onErrorClear={clearFieldError}
-          required={true}
+          required={!formData.step2?.customDimensions}
         />
 
         <OptimizedSelect
@@ -892,17 +1220,36 @@ const Step2ProjectDetails = memo(({ formData, updateFormData, errors, clearField
         />
       </Box>
 
-      <Box textAlign="center" mt={3}>
-        <Text fontSize="sm" color="textSecondary" fontStyle="italic">
-          {t('quote.step2.helpText')}
-        </Text>
-      </Box>
+
+<Box textAlign="center" mt={3}>
+  <Text fontSize="sm" color="textSecondary">
+    {t('quote.step2.notFound')}{' '}
+    <Text
+      as="span"
+      color="primary"
+      fontWeight="600"
+      cursor="pointer"
+      textDecoration="underline"
+      onClick={handleOpenModal}
+      _hover={{ opacity: 0.8 }}
+    >
+      {t('quote.step2.clickHere')}
+    </Text>
+  </Text>
+</Box>
+
+<DimensionsModal 
+  isOpen={isModalOpen} 
+  onClose={handleCloseModal}
+  onConfirm={handleModalConfirm}
+/>
     </VStack>
   )
 })
 Step2ProjectDetails.displayName = 'Step2ProjectDetails'
 
 // ✅ Composant Step 3 - Quantité & Budget avec slider simplifié
+// ✅ Composant Step 3 - Quantité & Budget SANS slider
 const Step3QuantityBudget = memo(({ formData, updateFormData, errors, clearFieldError }) => {
   const { t } = useTranslation()
 
@@ -913,21 +1260,12 @@ const Step3QuantityBudget = memo(({ formData, updateFormData, errors, clearField
     })
   }, [formData.step3, updateFormData])
 
-  // ✅ Handler CORRIGÉ pour Chakra UI v3
-  const handleBudgetChange = useCallback((details) => {
-    const newValue = details.value[0] || 500000
+  const handleBudgetChange = useCallback((e) => {
     updateFormData('step3', { 
       ...formData.step3, 
-      budget: newValue 
+      budget: e.target.value 
     })
   }, [formData.step3, updateFormData])
-
-  const formatPrice = useCallback((price) => {
-    return new Intl.NumberFormat('fr-DZ', {
-      style: 'decimal',
-      minimumFractionDigits: 0
-    }).format(price) + ' DA'
-  }, [])
 
   return (
     <VStack spacing={6} align="stretch">
@@ -956,86 +1294,18 @@ const Step3QuantityBudget = memo(({ formData, updateFormData, errors, clearField
           type="number"
         />
 
-        {/* ✅ Slider budget avec VRAIE syntaxe v3 */}
-        <Field.Root>
-          <Field.Label 
-            fontSize="sm"
-            fontWeight="600" 
-            color="textSecondary"
-            mb={2}
-          >
-            {t('quote.step3.budget')}
-          </Field.Label>
-          
-          <Box pt={2} pb={4}>
-            {/* Min/Max */}
-            <HStack justify="space-between" mb={4}>
-              <Text fontSize="sm" color="textSecondary">
-                {formatPrice(10000)}
-              </Text>
-              <Text fontSize="sm" color="textSecondary">
-                {formatPrice(5000000)}
-              </Text>
-            </HStack>
-
-            {/* ✅ VRAI SLIDER CHAKRA UI V3 */}
-            <Slider.Root
-              min={10000}
-              max={5000000}
-              step={10000}
-              value={[formData.step3?.budget || 500000]}
-              onValueChange={handleBudgetChange}
-              width="100%"
-            >
-              <Slider.Control>
-                <Slider.Track
-                  bg="footerBg"
-                  backdropFilter="blur(12px)"
-                  border="1px solid"
-                  borderColor="primary"
-                  borderRadius="8px"
-                  h="8px"
-                  position="relative"
-                  _before={{
-                    content: '""',
-                    position: "absolute",
-                    inset: 0,
-                    padding: "1px",
-                    borderRadius: "8px",
-                    background: "linear-gradient(90deg, rgba(243, 146, 0, 0.1) 0%, #EA5C16 100%)",
-                    WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-                    WebkitMaskComposite: "xor",
-                    maskComposite: "exclude",
-                    pointerEvents: "none",
-                  }}
-                >
-                  <Slider.Range bg="primary" borderRadius="8px" />
-                </Slider.Track>
-                
-                <Slider.Thumb
-                  bg="fg"
-                  border="2px solid"
-                  borderColor="primary"
-                  w="20px"
-                  h="20px"
-                  borderRadius="50%"
-                  _hover={{ transform: "scale(1.1)" }}
-                  _focus={{ boxShadow: "0 0 0 3px rgba(243, 146, 0, 0.3)" }}
-                  transition="all 0.2s ease"
-                >
-                  <Slider.HiddenInput />
-                </Slider.Thumb>
-              </Slider.Control>
-            </Slider.Root>
-
-            {/* Valeur actuelle */}
-            <Box mt={4} textAlign="left">
-              <Text fontSize="lg" fontWeight="600" color="primary">
-                Budget estimé : {formatPrice(formData.step3?.budget || 500000)}
-              </Text>
-            </Box>
-          </Box>
-        </Field.Root>
+        {/* ✅ Input budget (comme quantité) */}
+        <OptimizedField
+          id="budget"
+          label={t('quote.step3.budget')}
+          placeholder="Ex: 500000"
+          value={formData.step3?.budget || ''}
+          onChange={handleBudgetChange}
+          error={errors.step3?.budget}
+          onErrorClear={clearFieldError}
+          required={true}
+          type="number"
+        />
       </Box>
     </VStack>
   )
@@ -1048,6 +1318,7 @@ export default function QuoteForm() {
   const { t } = useTranslation()
   const { showToast, ToastContainer } = useToast()
   const [currentStep, setCurrentStep] = useState(1)
+  const [customDimensions, setCustomDimensions] = useState(null)
   const [formData, setFormData] = useState({
     step1: {
       firstName: '',
@@ -1062,7 +1333,7 @@ export default function QuoteForm() {
     },
     step3: {
       quantity: '',
-      budget: 500000
+      budget: ''
     }
   })
   const [errors, setErrors] = useState({})
@@ -1106,22 +1377,30 @@ export default function QuoteForm() {
       }
     }
 
-    if (currentStep === 2) {
-      if (!currentStepData?.product?.trim()) {
-        stepErrors.product = t('quote.validation.required')
-      }
-      if (!currentStepData?.colorCount?.trim()) {
-        stepErrors.colorCount = t('quote.validation.required')
-      }
-    }
+if (currentStep === 2) {
+  // ✅ Le produit est obligatoire SAUF si des dimensions custom sont définies
+  if (!currentStepData?.customDimensions && !currentStepData?.product?.trim()) {
+    stepErrors.product = t('quote.validation.required')
+  }
+  if (!currentStepData?.colorCount?.trim()) {
+    stepErrors.colorCount = t('quote.validation.required')
+  }
+}
 
-    if (currentStep === 3) {
-      if (!currentStepData?.quantity?.trim()) {
-        stepErrors.quantity = t('quote.validation.required')
-      } else if (!/^\d+$/.test(currentStepData.quantity) || parseInt(currentStepData.quantity) <= 0) {
-        stepErrors.quantity = t('quote.validation.invalidQuantity')
-      }
-    }
+if (currentStep === 3) {
+  if (!currentStepData?.quantity?.trim()) {
+    stepErrors.quantity = t('quote.validation.required')
+  } else if (!/^\d+$/.test(currentStepData.quantity) || parseInt(currentStepData.quantity) <= 0) {
+    stepErrors.quantity = t('quote.validation.invalidQuantity')
+  }
+
+  // ✅ Validation du budget
+  if (!currentStepData?.budget) {
+    stepErrors.budget = t('quote.validation.required')
+  } else if (!/^\d+$/.test(currentStepData.budget.toString()) || parseInt(currentStepData.budget) <= 0) {
+    stepErrors.budget = 'Le budget doit être un nombre positif'
+  }
+}
 
     setErrors(prev => ({
       ...prev,
@@ -1132,8 +1411,12 @@ export default function QuoteForm() {
   }, [currentStep, formData, t])
 
   // ✅ Handler pour soumission finale avec toast en bas à droite
-  const handleSubmitQuote = useCallback(() => {
-    if (validateCurrentStep()) {
+const handleSubmitQuote = useCallback(async () => {
+  if (validateCurrentStep()) {
+    // 📧 Envoi de l'email via EmailJS
+    const emailResult = await sendQuoteEmail(formData)
+
+    if (emailResult.success) {
       showToast({
         title: t('quote.success.title'),
         description: t('quote.success.description'),
@@ -1146,13 +1429,22 @@ export default function QuoteForm() {
         setFormData({
           step1: { firstName: '', lastName: '', company: '', phone: '' },
           step2: { product: '', colorCount: '', primaryColor: '#EB5E41' },
-          step3: { quantity: '', budget: 500000 }
+          step3: { quantity: '', budget: '' }
         })
         setErrors({})
         setCurrentStep(1)
       }, 1000)
+    } else {
+      // ❌ Gestion d'erreur
+      showToast({
+        title: 'Erreur',
+        description: "Impossible d'envoyer le devis. Réessayez plus tard.",
+        type: 'error',
+        duration: 5000
+      })
     }
-  }, [validateCurrentStep, showToast, t])
+  }
+}, [validateCurrentStep, showToast, t, formData])
 
   const handleNext = useCallback(() => {
     if (currentStep === 3) {

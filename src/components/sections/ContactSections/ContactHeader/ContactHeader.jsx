@@ -2,37 +2,34 @@ import {
   Box, 
   Container, 
   Heading, 
-  Text,
-  Button
+  Text
 } from "@chakra-ui/react"
-import { HiArrowUpRight } from "react-icons/hi2"
+import { HiOutlineMail } from "react-icons/hi"
 import { useTranslation } from 'react-i18next'
-import { Link as RouterLink } from 'react-router-dom'
 import { useMemo } from 'react'
 
-export default function CTASection() {
+export default function ContactHeader() {
   const { t, i18n } = useTranslation()
   const isRTL = i18n.language === 'ar'
 
   // Mémoriser les traductions
   const translations = useMemo(() => ({
-    title: t('cta.title'),
-    description: t('cta.description'),
-    button: t('cta.button')
+    title: t('contact.header.title'), // "Contactez-nous"
+    description: t('contact.header.description') // "Une équipe à votre écoute pour concrétiser vos projets dématérialisé personnalisé"
   }), [t])
 
   return (
-    <Box as="section" py={{ base: 10, md: 10 }}>
+    <Box as="section" py={{ base: 10, md: 16 }}>
       <Container maxW="7xl">
         <Box
           bg="footerBg"
           borderRadius="20px"
-          p={5}
+          p={8}
           position="relative"
           overflow="hidden"
           border="1px solid"
           borderColor="transparent"
-          minH={{ base: "400px", md: "400px" }}
+          minH={{ base: "300px", md: "350px" }}
           display="flex"
           alignItems="center"
           justifyContent="center"
@@ -50,19 +47,33 @@ export default function CTASection() {
             pointerEvents: "none",
           }}
         >
-          {/* Contenu CTA */}
+          {/* Icône email en arrière-plan à gauche */}
+          <Box
+            position="absolute"
+            left="50%"
+            top="50%"
+            transform="translate(-50%, -50%)"
+            zIndex={1}
+            opacity={0.1}
+          >
+            <Box
+              as={HiOutlineMail}
+              fontSize={{ base: "150px", md: "200px", lg: "250px" }}
+              color="primary"
+            />
+          </Box>
+
+          {/* Contenu texte centré */}
           <Box
             position="relative"
             zIndex={3}
             textAlign="center"
-            px={{ base: 6, md: 8 }}
-            py={{ base: 8, md: 12 }}
             maxW="4xl"
             mx="auto"
             dir={isRTL ? "rtl" : "ltr"}
           >
             <Heading 
-              as="h2" 
+              as="h1" 
               size={{ base: "2xl", md: "4xl" }}
               fontWeight="bold"
               color="fg"
@@ -76,48 +87,12 @@ export default function CTASection() {
             <Text 
               fontSize={{ base: "lg", md: "xl" }}
               color="fg"
-              mb={8}
               lineHeight="1.6"
               maxW="2xl"
               mx="auto"
             >
               {translations.description}
             </Text>
-
-<Button
-    as={RouterLink}
-    to={`/${i18n.language}/contact`}
-    size="md"
-    variant="outline"
-    borderColor="primary"
-    color="fg"
-    bg="transparent"
-    _hover={{
-      bg: "primary",
-      color: "white",
-      transform: "translateY(-2px)",
-      boxShadow: "0 8px 25px rgba(234, 92, 22, 0.2)",
-      textDecoration: "none"
-    }}
-    _active={{
-      transform: "translateY(0)",
-    }}
-    transition="all 0.3s ease"
-    px={5}
-    h="52px"
-    fontSize="16px"
-    fontWeight="600"
-    borderRadius="12px"
->
-  {translations.button}
-  <Box 
-    as={HiArrowUpRight}
-    ml={isRTL ? 0 : 2}
-    mr={isRTL ? 2 : 0}
-    transform={isRTL ? 'rotate(180deg)' : 'none'}
-    fontSize="18px"
-  />
-</Button>
           </Box>
         </Box>
       </Container>

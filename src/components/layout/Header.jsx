@@ -218,7 +218,7 @@ const isActive = useCallback((path) => {
   // Mémoriser navLinks
 const navLinks = useMemo(() => [
   { label: t('navigation.home'), path: `/${i18n.language}` },
-  { label: t('navigation.about'), path: `/${i18n.language}/a-propos` },
+  { label: t('navigation.about'), path: 'about', type: 'scroll' },
   { label: t('navigation.contact'), path: `/${i18n.language}/contact` }
 ], [t, i18n.language])
 
@@ -242,6 +242,52 @@ const navLinks = useMemo(() => [
       changeLanguage(newLang)
     }
   }, [changeLanguage, i18n.language])
+
+  // ✅ Fonction pour gérer le scroll vers une section
+const handleScrollToSection = useCallback((sectionId) => {
+  // Fermer le menu mobile si ouvert
+  if (mobileMenuOpen) {
+    handleMobileMenuClose()
+  }
+
+  // Si on n'est pas sur la home, aller d'abord à la home
+  if (location.pathname !== `/${i18n.language}`) {
+    navigate(`/${i18n.language}`)
+    // Attendre plus longtemps et vérifier plusieurs fois
+    const scrollToElement = () => {
+      const element = document.getElementById(sectionId)
+      if (element) {
+        const headerOffset = 100
+        const elementPosition = element.getBoundingClientRect().top
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        })
+      } else {
+        // Si l'élément n'existe pas encore, réessayer
+        setTimeout(scrollToElement, 100)
+      }
+    }
+    
+    // Attendre que la navigation soit terminée
+    setTimeout(scrollToElement, 300)
+  } else {
+    // Si on est déjà sur la home, juste scroller
+    const element = document.getElementById(sectionId)
+    if (element) {
+      const headerOffset = 100
+      const elementPosition = element.getBoundingClientRect().top
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      })
+    }
+  }
+}, [location, navigate, i18n.language, mobileMenuOpen, handleMobileMenuClose])
 
   // Cleanup des timeouts
   useEffect(() => {
@@ -315,38 +361,61 @@ const navLinks = useMemo(() => [
               </Box>
 
               {/* Navigation Links */}
-              <HStack gap="8">
-                {navLinks.map((link) => (
-                  <Link
-                    key={link.path}
-                    as={RouterLink}
-                    to={link.path}
-                    color={isActive(link.path) ? '#EA5C16' : '#050404'}
-                    _dark={{ color: isActive(link.path) ? '#EA5C16' : 'white' }}
-                    fontWeight={isActive(link.path) ? '600' : '500'}
-                    fontSize="15px"
-                    textDecoration={'none'}
-                    _focus={{ boxShadow: "none", outline: "none" }}
-                    _active={{ boxShadow: "none" }}
-                    _hover={{ color: '#EA5C16', textDecoration: "none" }}
-                    transition="color 0.2s ease-out"
-                    position="relative"
-                    _after={{
-                      content: '""',
-                      position: "absolute",
-                      bottom: "-4px",
-                      left: 0,
-                      right: 0,
-                      h: "2px",
-                      bg: "#EA5C16",
-                      transform: isActive(link.path) ? "scaleX(1)" : "scaleX(0)",
-                      transition: "transform 0.2s ease-out"
-                    }}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-              </HStack>
+             <HStack gap="8">
+  {navLinks.map((link) => (
+    link.type === 'scroll' ? (
+      <Box
+        key={link.path}
+        as="button"
+        onClick={() => handleScrollToSection(link.path)}
+        color='#050404'
+        _dark={{ color: 'white' }}
+        fontWeight='500'
+        fontSize="15px"
+        textDecoration='none'
+        cursor="pointer"
+        background="transparent"
+        border="none"
+        _focus={{ boxShadow: "none", outline: "none" }}
+        _active={{ boxShadow: "none" }}
+        _hover={{ color: '#EA5C16' }}
+        transition="color 0.2s ease-out"
+        position="relative"
+      >
+        {link.label}
+      </Box>
+    ) : (
+      <Link
+        key={link.path}
+        as={RouterLink}
+        to={link.path}
+        color={isActive(link.path) ? '#EA5C16' : '#050404'}
+        _dark={{ color: isActive(link.path) ? '#EA5C16' : 'white' }}
+        fontWeight={isActive(link.path) ? '600' : '500'}
+        fontSize="15px"
+        textDecoration='none'
+        _focus={{ boxShadow: "none", outline: "none" }}
+        _active={{ boxShadow: "none" }}
+        _hover={{ color: '#EA5C16', textDecoration: "none" }}
+        transition="color 0.2s ease-out"
+        position="relative"
+        _after={{
+          content: '""',
+          position: "absolute",
+          bottom: "-4px",
+          left: 0,
+          right: 0,
+          h: "2px",
+          bg: "#EA5C16",
+          transform: isActive(link.path) ? "scaleX(1)" : "scaleX(0)",
+          transition: "transform 0.2s ease-out"
+        }}
+      >
+        {link.label}
+      </Link>
+    )
+  ))}
+</HStack>
 
               {/* Right Side - Theme, Language, CTA */}
               <HStack gap="4" align="center">
@@ -427,7 +496,7 @@ const navLinks = useMemo(() => [
                 />
 
                 {/* CTA Button */}
-<GradientButton to="/contact" size="md">
+<GradientButton scrollTo="quote" size="md">
   {t('hero.buttons.quote')}
 </GradientButton>
               </HStack>
@@ -622,37 +691,68 @@ const navLinks = useMemo(() => [
               <Drawer.Body py="4" px="4">
                 <VStack gap="4" align="stretch">
                   {/* Navigation Links */}
-                  <VStack gap="2" align="stretch">
-                    {navLinks.map((link) => (
-                      <Link
-                        key={link.path}
-                        as={RouterLink}
-                        to={link.path}
-                        onClick={handleMobileMenuClose}
-                        color={isActive(link.path) ? '#EA5C16' : '#050404'}
-                        _dark={{ color: isActive(link.path) ? '#EA5C16' : 'white' }}
-                        fontWeight={isActive(link.path) ? '600' : '500'}
-                        fontSize="14px"
-                        py="2"
-                        px="3"
-                        textDecoration={'none'}
-                        borderRadius="8px"
-                        _hover={{ 
-                          color: '#EA5C16',
-                          bg: "rgba(234, 92, 22, 0.05)"
-                        }}
-                        transition="all 0.2s"
-                        textAlign="left"
-                      >
-                        {link.label}
-                      </Link>
-                    ))}
-                  </VStack>
+                 <VStack gap="2" align="stretch">
+  {navLinks.map((link) => (
+    link.type === 'scroll' ? (
+      <Box
+        key={link.path}
+        as="button"
+onClick={() => {
+  handleScrollToSection(link.path)
+  handleMobileMenuClose()
+}}
+        color='#050404'
+        _dark={{ color: 'white' }}
+        fontWeight='500'
+        fontSize="14px"
+        py="2"
+        px="3"
+        textDecoration='none'
+        borderRadius="8px"
+        cursor="pointer"
+        background="transparent"
+        border="none"
+        textAlign="left"
+        width="100%"
+        _hover={{ 
+          color: '#EA5C16',
+          bg: "rgba(234, 92, 22, 0.05)"
+        }}
+        transition="all 0.2s"
+      >
+        {link.label}
+      </Box>
+    ) : (
+      <Link
+        key={link.path}
+        as={RouterLink}
+        to={link.path}
+        onClick={handleMobileMenuClose}
+        color={isActive(link.path) ? '#EA5C16' : '#050404'}
+        _dark={{ color: isActive(link.path) ? '#EA5C16' : 'white' }}
+        fontWeight={isActive(link.path) ? '600' : '500'}
+        fontSize="14px"
+        py="2"
+        px="3"
+        textDecoration='none'
+        borderRadius="8px"
+        _hover={{ 
+          color: '#EA5C16',
+          bg: "rgba(234, 92, 22, 0.05)"
+        }}
+        transition="all 0.2s"
+        textAlign="left"
+      >
+        {link.label}
+      </Link>
+    )
+  ))}
+</VStack>
 
                   {/* CTA Button Mobile */}
                   <Box pt="2">
 <GradientButton 
-  to="/contact" 
+  scrollTo="quote"
   onClick={handleMobileMenuClose}
   size="md"
   isFullWidth={true}
