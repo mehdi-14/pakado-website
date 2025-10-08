@@ -1303,7 +1303,7 @@ const Step3QuantityBudget = memo(({ formData, updateFormData, errors, clearField
           onChange={handleBudgetChange}
           error={errors.step3?.budget}
           onErrorClear={clearFieldError}
-          required={true}
+          required={false}
           type="number"
         />
       </Box>
@@ -1392,13 +1392,15 @@ if (currentStep === 3) {
     stepErrors.quantity = t('quote.validation.required')
   } else if (!/^\d+$/.test(currentStepData.quantity) || parseInt(currentStepData.quantity) <= 0) {
     stepErrors.quantity = t('quote.validation.invalidQuantity')
+  } else if (parseInt(currentStepData.quantity) < 10000) {
+    stepErrors.quantity = 'La quantité minimum est de 10 000 unités'
   }
 
-  // ✅ Validation du budget
-  if (!currentStepData?.budget) {
-    stepErrors.budget = t('quote.validation.required')
-  } else if (!/^\d+$/.test(currentStepData.budget.toString()) || parseInt(currentStepData.budget) <= 0) {
-    stepErrors.budget = 'Le budget doit être un nombre positif'
+  // ✅ Budget optionnel - validation seulement si rempli
+  if (currentStepData?.budget && currentStepData.budget.trim() !== '') {
+    if (!/^\d+$/.test(currentStepData.budget.toString()) || parseInt(currentStepData.budget) <= 0) {
+      stepErrors.budget = 'Le budget doit être un nombre positif'
+    }
   }
 }
 

@@ -37,7 +37,7 @@ export default function Footer() {
       { label: t('navigation.contact'), to: `/${i18n.language}/contact`, type: 'link' }
     ],
     contact: {
-      phones: ['0770553975', '0671947928'],
+      phones: ['0770553975'],
       email: 'pakadostyle@gmail.com',
       address: t('footer.contact.address')
     },

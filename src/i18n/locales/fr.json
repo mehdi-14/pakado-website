@@ -179,15 +179,15 @@
       },
       "packagingTypes": {
         "question": "Quels types de packaging proposez-vous ?",
-        "answer": "Nous proposons une large gamme : boites alimentaires, barquettes, gobelets personnalisés, sacs kraft et plastique, ainsi que tous les accessoires de table personnalisables."
+        "answer": "Nous proposons une large gamme pour : Pizza, Crepe, Cafe, Plat, Boisson, ainsi que tous les accessoires de table personnalisables."
       },
       "ecoFriendly": {
         "question": "Le packaging sur mesure est-il écologique ?",
-        "answer": "Oui, nous privilégions des matériaux recyclables et éco-responsables. Nos emballages en carton et kraft sont biodégradables et respectueux de l'environnement."
+        "answer": "Oui, nous privilégions des matériaux recyclables et éco-responsables. Nos emballages sont biodégradables et respectueux de l'environnement."
       },
       "deliveryDetails": {
         "question": "Quels sont les délais de fabrication et de livraison ?",
-        "answer": "Les délais varient selon la complexité et la quantité. Généralement, comptez 7 à 15 jours ouvrables après validation du design et du bon de commande."
+        "answer": "Les délais varient selon la complexité et la quantité. Généralement, comptez à partir de 15 jours ouvrables après validation du design et du bon de commande."
       }
     }
   },
